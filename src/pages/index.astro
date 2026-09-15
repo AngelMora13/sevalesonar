@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import Catalog from '../components/Catalog.vue';
+import ContactSection from '../components/ContactSection.astro';
+import Footer from '../components/Footer.astro';
+import { getDb, schema } from '../db/client';
+import { CONTACT_INFO } from '../lib/constants';
+import { eq, desc } from 'drizzle-orm';
+
+export const prerender = false;
+
+let initialProducts: any[] = [];
+try {
+  const db = await getDb();
+  initialProducts = await db
+    .select()
+    .from(schema.products)
+    .where(eq(schema.products.active, true))
+    .orderBy(schema.products.order_index, desc(schema.products.created_at));
+} catch (e) {
+  console.error('Error loading products on index.astro:', e);
+}
+---
+
+<Layout
+  title="Se Vale Soñar | Catálogo de Ponquesitos & Postres Artesanales"
+  description="Catálogo exclusivo de ponquesitos gourmet y repostería artesanal en Se Vale Soñar. Haz tu pedido directo por WhatsApp."
+>
+  <Navbar />
+  <main>
+    <Hero />
+    <Catalog client:load initialProducts={initialProducts} whatsappNumber={CONTACT_INFO.whatsappNumber} />
+    <ContactSection />
+  </main>
+  <Footer />
+</Layout>

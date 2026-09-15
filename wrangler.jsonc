@@ -1,0 +1,22 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sevalesonar",
+  "main": "@astrojs/cloudflare/entrypoints/server",
+  "compatibility_date": "2025-02-24",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "sevalesonar-db",
+      "database_id": "sevalesonar-d1-prod"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "IMAGES_BUCKET",
+      "bucket_name": "sevalesonar-images"
+    }
+  ]
+}

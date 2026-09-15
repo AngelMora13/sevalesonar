@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import LoginForm from '../../components/LoginForm.vue';
+import { verifySessionToken } from '../../lib/auth';
+
+export const prerender = false;
+
+// Check if already authenticated
+const sessionCookie = Astro.cookies.get('admin_session')?.value;
+if (sessionCookie) {
+  const result = await verifySessionToken(sessionCookie);
+  if (result.valid) {
+    return Astro.redirect('/admin');
+  }
+}
+---
+
+<Layout
+  title="Iniciar Sesión | Panel de Control Se Vale Soñar"
+  description="Acceso exclusivo para la administración del catálogo de Se Vale Soñar."
+>
+  <div class="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-[#fffbf7] via-[#f7ebe0] to-[#eedac9]">
+    <LoginForm client:load />
+  </div>
+</Layout>

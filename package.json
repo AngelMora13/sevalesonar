@@ -1,0 +1,40 @@
+{
+  "name": "sevalesonar",
+  "version": "1.0.0",
+  "description": "Catálogo y panel admin para Se Vale Soñar",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "wrangler d1 migrations apply sevalesonar-db --local",
+    "db:seed": "node scripts/seed.mjs"
+  },
+  "type": "module",
+  "dependencies": {
+    "@astrojs/cloudflare": "^14.3.1",
+    "@astrojs/vue": "^7.0.2",
+    "@libsql/client": "^0.18.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.2",
+    "drizzle-orm": "^0.45.2",
+    "jose": "^6.2.12",
+    "tailwindcss": "^4.3.3",
+    "vue": "^3.5.42"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250224.0",
+    "@types/node": "^22.13.5",
+    "drizzle-kit": "^0.30.4",
+    "typescript": "^5.7.3",
+    "wrangler": "^4.131.2"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "workerd"
+    ]
+  }
+}
