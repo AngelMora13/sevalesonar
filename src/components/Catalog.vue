@@ -14,7 +14,8 @@
               : 'text-[#6b5549] hover:text-[#2b1e1a]'
           ]"
         >
-          <span>✨ Todos</span>
+          <IconBase name="sparkles" fontSize="1rem" />
+          <span>Todos</span>
           <span class="text-xs px-2 py-0.5 rounded-full bg-[#faefe5] font-bold text-[#8c3b1a]">
             {{ products.length }}
           </span>
@@ -30,7 +31,8 @@
               : 'text-[#6b5549] hover:text-[#2b1e1a]'
           ]"
         >
-          <span>🧁 Ponquesitos</span>
+          <IconBase name="cupcake" fontSize="1rem" />
+          <span>Ponquesitos</span>
           <span class="text-xs px-2 py-0.5 rounded-full bg-[#faefe5] font-bold text-[#8c3b1a]">
             {{ countByCategory('ponquesitos') }}
           </span>
@@ -46,7 +48,8 @@
               : 'text-[#6b5549] hover:text-[#2b1e1a]'
           ]"
         >
-          <span>🍰 Otros Postres</span>
+          <IconBase name="cake" fontSize="1rem" />
+          <span>Otros Postres</span>
           <span class="text-xs px-2 py-0.5 rounded-full bg-[#faefe5] font-bold text-[#8c3b1a]">
             {{ countByCategory('otros_postres') }}
           </span>
@@ -85,12 +88,14 @@
 
     <!-- Empty Results State -->
     <div v-else-if="filteredProducts.length === 0" class="text-center py-16 bg-white/70 rounded-3xl border border-[#f0ded2] p-8 max-w-lg mx-auto">
-      <div class="text-5xl mb-3">🧁</div>
+      <div class="mb-3">
+        <IconBase name="cupcake" fontSize="3.5rem" />
+      </div>
       <h3 class="text-xl font-bold font-display text-[#2b1e1a] mb-1">No encontramos ese dulce</h3>
       <p class="text-sm text-[#735a4d] mb-4">Prueba buscando con otro nombre o selecciona otra categoría.</p>
       <button
         @click="searchQuery = ''; activeCategory = 'all'"
-        class="px-4 py-2 bg-[#d97736] text-white rounded-xl text-sm font-medium hover:bg-[#c46527] transition-colors"
+        class="px-4 py-2 bg-[#d97736] text-white rounded-xl text-sm font-medium hover:bg-[#c46527] transition-colors cursor-pointer"
       >
         Ver todos los productos
       </button>
@@ -115,10 +120,11 @@
             />
             <!-- Category Tag Badge -->
             <span
-              class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-md shadow-xs"
+              class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-md shadow-xs flex items-center gap-1.5"
               :class="product.category === 'ponquesitos' ? 'bg-amber-500/90 text-white' : 'bg-rose-600/90 text-white'"
             >
-              {{ product.category === 'ponquesitos' ? '🧁 Ponquesito' : '🍰 Postre' }}
+              <IconBase :name="product.category === 'ponquesitos' ? 'cupcake' : 'cake'" fontSize="0.85rem" />
+              <span>{{ product.category === 'ponquesitos' ? 'Ponquesito' : 'Postre' }}</span>
             </span>
           </div>
 
@@ -169,45 +175,39 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
+import type { Product, CategoryId } from '../types/product';
+import type { ApiResponse } from '../types/api';
+import IconBase from './IconBase.vue';
 
-interface Product {
-  id: string;
-  name: string;
-  description: string;
-  price: string;
-  show_price: boolean;
-  category: string;
-  image_url: string;
-  active: boolean;
-  order_index?: number;
-}
-
-const props = defineProps<{
+interface Props {
   initialProducts?: Product[];
   whatsappNumber: string;
-}>();
+}
+
+const props = defineProps<Props>();
 
 const products = ref<Product[]>(props.initialProducts || []);
-const activeCategory = ref<'all' | 'ponquesitos' | 'otros_postres'>('all');
-const searchQuery = ref('');
-const loading = ref(false);
+const activeCategory = ref<'all' | CategoryId>('all');
+const searchQuery = ref<string>('');
+const loading = ref<boolean>(false);
 
-const countByCategory = (cat: string) => {
+const countByCategory = (cat: CategoryId): number => {
   return products.value.filter(p => p.category === cat).length;
 };
 
-const filteredProducts = computed(() => {
+const filteredProducts = computed<Product[]>(() => {
   return products.value.filter(item => {
     const matchesCat = activeCategory.value === 'all' || item.category === activeCategory.value;
     const query = searchQuery.value.trim().toLowerCase();
-    const matchesSearch = !query ||
+    const matchesSearch =
+      !query ||
       item.name.toLowerCase().includes(query) ||
       item.description.toLowerCase().includes(query);
     return matchesCat && matchesSearch;
   });
 });
 
-const getWhatsAppLink = (product: Product) => {
+const getWhatsAppLink = (product: Product): string => {
   let message = `¡Hola Se Vale Soñar! 🧁 Me gustaría hacer un pedido del producto: *${product.name}*`;
   if (product.show_price && product.price) {
     message += ` (${product.price})`;
@@ -218,20 +218,19 @@ const getWhatsAppLink = (product: Product) => {
   return `https://wa.me/${props.whatsappNumber}?text=${encoded}`;
 };
 
-const handleImageError = (event: Event) => {
+const handleImageError = (event: Event): void => {
   const target = event.target as HTMLImageElement;
-  target.src = 'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=600&q=80';
+  target.src = '/placeholder-pastry.svg';
 };
 
 onMounted(async () => {
-  // If no initial products were SSR passed, fetch from /api/products
   if (products.value.length === 0) {
     try {
       loading.value = true;
       const res = await fetch('/api/products');
-      const data = await res.json();
-      if (data.success) {
-        products.value = Array.isArray(data.data) ? data.data : (Array.isArray(data.products) ? data.products : []);
+      const data: ApiResponse<Product[]> = await res.json();
+      if (data.success && Array.isArray(data.data)) {
+        products.value = data.data;
       }
     } catch (e) {
       console.error('Error fetching products:', e);

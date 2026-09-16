@@ -7,6 +7,9 @@ export interface InitialProduct {
   category: 'ponquesitos' | 'otros_postres';
   image_url: string;
   active: boolean;
+  is_featured?: boolean;
+  featured_label?: string;
+  featured_description?: string;
   order_index: number;
 }
 
@@ -43,6 +46,9 @@ export const INITIAL_PRODUCTS: InitialProduct[] = [
     category: 'ponquesitos',
     image_url: 'https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=600&q=80',
     active: true,
+    is_featured: true,
+    featured_label: 'Especialidad de la casa',
+    featured_description: 'Horneados frescos cada mañana',
     order_index: 3
   },
   {

@@ -1,32 +1,101 @@
 ---
 import '../styles/global.css';
+import { SITE_INFO } from '../lib/constants';
 
 interface Props {
   title?: string;
   description?: string;
+  canonical?: string;
+  image?: string;
+  noindex?: boolean;
 }
 
 const {
-  title = 'Se Vale Soñar | Repostería Fina & Ponquesitos Artesanales',
-  description = 'Descubre nuestro exclusivo catálogo de ponquesitos gourmet y postres artesanales en Se Vale Soñar. Pedidos directos vía WhatsApp.'
+  title,
+  description,
+  canonical,
+  image,
+  noindex = false
 } = Astro.props;
+
+const metaTitle = title || SITE_INFO.title;
+const metaDescription = description || SITE_INFO.description;
+const baseUrl = SITE_INFO.siteUrl.replace(/\/+$/, '');
+const canonicalUrl = canonical || new URL(Astro.url.pathname, baseUrl).href;
+const metaImageUrl = new URL(image || SITE_INFO.ogImage, baseUrl).href;
+
+// JSON-LD Structured Data para Negocio Local / Repostería
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Bakery',
+  'name': SITE_INFO.storeName,
+  'description': SITE_INFO.description,
+  'url': baseUrl,
+  'image': metaImageUrl,
+  'telephone': SITE_INFO.whatsappFormatted,
+  'address': {
+    '@type': 'PostalAddress',
+    'addressLocality': 'Caracas',
+    'addressRegion': 'Distrito Capital',
+    'addressCountry': 'VE'
+  },
+  'priceRange': '$$',
+  'openingHoursSpecification': [
+    {
+      '@type': 'OpeningHoursSpecification',
+      'dayOfWeek': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      'opens': '09:00',
+      'closes': '19:00'
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      'dayOfWeek': ['Sunday'],
+      'opens': '10:00',
+      'closes': '16:00'
+    }
+  ],
+  'sameAs': [
+    SITE_INFO.instagramUrl
+  ]
+};
 ---
 
 <!doctype html>
 <html lang="es" class="scroll-smooth">
   <head>
+    <!-- Configuración Básica -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- SEO Meta Tags -->
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <!-- SEO Principal -->
+    <title>{metaTitle}</title>
+    <meta name="description" content={metaDescription} />
+    <meta name="keywords" content={SITE_INFO.keywords.join(', ')} />
+    <meta name="author" content={SITE_INFO.author} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <link rel="canonical" href={canonicalUrl} />
     <meta name="theme-color" content="#d97736" />
+
+    <!-- Open Graph (Facebook, WhatsApp, etc.) -->
+    <meta property="og:site_name" content={SITE_INFO.storeName} />
+    <meta property="og:title" content={metaTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={SITE_INFO.locale} />
+    <meta property="og:image" content={metaImageUrl} />
+    <meta property="og:image:alt" content={SITE_INFO.storeName} />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={metaTitle} />
+    <meta name="twitter:description" content={metaDescription} />
+    <meta name="twitter:image" content={metaImageUrl} />
+
+    <!-- Datos Estructurados JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

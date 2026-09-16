@@ -30,6 +30,9 @@ export interface CreateProductRequestBody {
   image_size?: number;
   image_mime?: string;
   active?: boolean;
+  is_featured?: boolean;
+  featured_label?: string;
+  featured_description?: string;
   order_index?: number;
 }
 
@@ -44,12 +47,16 @@ export interface UpdateProductRequestBody {
   image_size?: number;
   image_mime?: string;
   active?: boolean;
+  is_featured?: boolean;
+  featured_label?: string;
+  featured_description?: string;
   order_index?: number;
 }
 
 export interface PatchProductRequestBody {
   active?: boolean;
   show_price?: boolean;
+  is_featured?: boolean;
 }
 
 export interface ProductsListResponseData {

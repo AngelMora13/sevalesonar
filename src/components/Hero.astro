@@ -1,5 +1,18 @@
 ---
-import { CONTACT_INFO } from '../lib/constants';
+import { SITE_INFO } from '../lib/constants';
+import IconBase from './IconBase.astro';
+import type { Product } from '../types/product';
+
+interface Props {
+  featuredProduct?: Product | null;
+}
+
+const { featuredProduct } = Astro.props;
+
+const featuredImage = featuredProduct?.image_url || 'https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=800&q=80';
+const featuredLabel = featuredProduct?.featured_label || 'Especialidad de la casa';
+const featuredName = featuredProduct?.name || 'Ponquesitos de Toffee & Vainilla';
+const featuredDescription = featuredProduct?.featured_description || 'Horneados frescos cada mañana';
 ---
 
 <section class="relative overflow-hidden pt-8 pb-16 md:pt-16 md:pb-24">
@@ -12,28 +25,29 @@ import { CONTACT_INFO } from '../lib/constants';
       <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#fcefe3] border border-[#ecd2bf] text-xs font-bold text-[#b8561d] uppercase tracking-wider">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          Horneado hoy con pasión
+          {SITE_INFO.heroBadge}
         </div>
 
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display tracking-tight text-[#2b1e1a] leading-[1.15]">
-          Endulzamos tus momentos <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#d97736] via-[#c45318] to-rose-600">más felices</span>
+          {SITE_INFO.heroTitlePrefix} <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#d97736] via-[#c45318] to-rose-600">{SITE_INFO.heroTitleHighlight}</span>
         </h1>
 
         <p class="text-lg text-[#614b3f] max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
-          Descubre nuestra selección de ponquesitos gourmet y postres caseros hechos con ingredientes premium. Perfectos para celebrar, compartir o darte un gusto especial.
+          {SITE_INFO.heroDescription}
         </p>
 
         <!-- CTA Buttons -->
         <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
           <a
             href="#catalogo"
-            class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-[#d97736] hover:bg-[#c46527] text-white font-semibold text-sm shadow-lg shadow-[#d97736]/25 transition-all duration-200 active:scale-[0.98] text-center"
+            class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-[#d97736] hover:bg-[#c46527] text-white font-semibold text-sm shadow-lg shadow-[#d97736]/25 transition-all duration-200 active:scale-[0.98] text-center inline-flex items-center justify-center gap-2"
           >
-            🧁 Ver Catálogo Completo
+            <IconBase name="cupcake" fontSize="1.25em" />
+            <span>Ver Catálogo Completo</span>
           </a>
 
           <a
-            href={`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=${encodeURIComponent('¡Hola Se Vale Soñar! 🧁 Me gustaría hacer un pedido personalizado.')}`}
+            href={`https://wa.me/${SITE_INFO.whatsappNumber}?text=${encodeURIComponent(SITE_INFO.whatsappCustomMessage)}`}
             target="_blank"
             rel="noopener noreferrer"
             class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-white hover:bg-[#faf4ee] border border-[#e5cbba] text-[#2b1e1a] font-semibold text-sm shadow-xs transition-all duration-200 active:scale-[0.98] text-center flex items-center justify-center gap-2"
@@ -54,7 +68,10 @@ import { CONTACT_INFO } from '../lib/constants';
             <div class="text-xs text-[#7d6455] font-medium">Artesanal & Fresco</div>
           </div>
           <div>
-            <div class="text-xl sm:text-2xl font-bold font-display text-[#2b1e1a]">5⭐</div>
+            <div class="text-xl sm:text-2xl font-bold font-display text-[#2b1e1a] inline-flex items-center gap-1 justify-center lg:justify-start">
+              <span>5</span>
+              <IconBase name="star" fontSize="1.15rem" />
+            </div>
             <div class="text-xs text-[#7d6455] font-medium">Sabor inigualable</div>
           </div>
         </div>
@@ -66,24 +83,24 @@ import { CONTACT_INFO } from '../lib/constants';
           <!-- Main Hero Image Card -->
           <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/5] bg-gradient-to-tr from-amber-100 to-rose-100">
             <img
-              src="https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=800&q=80"
-              alt="Ponquesitos artesanales Se Vale Soñar"
+              src={featuredImage}
+              alt={featuredName}
               class="w-full h-full object-cover"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
             <div class="absolute bottom-6 left-6 right-6 text-white">
               <span class="px-3 py-1 bg-amber-500/90 backdrop-blur-md rounded-full text-xs font-bold uppercase tracking-wider">
-                Especialidad de la casa
+                {featuredLabel}
               </span>
-              <h3 class="text-2xl font-bold font-display mt-2">Ponquesitos de Toffee & Vainilla</h3>
-              <p class="text-xs text-white/80 mt-1">Horneados frescos cada mañana</p>
+              <h3 class="text-2xl font-bold font-display mt-2">{featuredName}</h3>
+              <p class="text-xs text-white/80 mt-1">{featuredDescription}</p>
             </div>
           </div>
 
           <!-- Floating badge -->
           <div class="absolute -bottom-6 -left-6 glass-card p-4 rounded-2xl shadow-xl border border-white/60 hidden sm:flex items-center gap-3">
             <div class="w-12 h-12 rounded-xl bg-amber-500 text-white flex items-center justify-center text-2xl shadow-md">
-              ✨
+              <IconBase name="sparkles" fontSize="1.5rem" />
             </div>
             <div>
               <p class="text-xs font-bold text-[#2b1e1a]">Pedidos Inmediatos</p>

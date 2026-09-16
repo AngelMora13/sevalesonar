@@ -3,7 +3,7 @@ import { getDb, schema } from '../../../db/client';
 import { PRODUCT_LIMITS, VALID_CATEGORIES } from '../../../lib/constants';
 import { ok, created, badRequest, serverError } from '../../../lib/response';
 import type { CreateProductRequestBody } from '../../../types/api';
-import { sql, desc } from 'drizzle-orm';
+import { sql, desc, eq } from 'drizzle-orm';
 
 export const prerender = false;
 
@@ -34,7 +34,7 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const body = (await request.json().catch(() => ({}))) as CreateProductRequestBody;
-    let { name, description, price, show_price, category, image_url, image_key, image_size, image_mime, active } = body;
+    let { name, description, price, show_price, category, image_url, image_key, image_size, image_mime, active, is_featured, featured_label, featured_description } = body;
 
     // 2. Validate name (max 30 chars, required)
     name = typeof name === 'string' ? name.trim() : '';
@@ -59,6 +59,15 @@ export const POST: APIRoute = async ({ request }) => {
     // 5. Price (free text string)
     price = typeof price === 'string' ? price.trim() : '';
 
+    // If marked as featured, unset any previously featured product
+    const shouldBeFeatured = is_featured === true;
+    if (shouldBeFeatured) {
+      await db
+        .update(schema.products)
+        .set({ is_featured: false })
+        .where(eq(schema.products.is_featured, true));
+    }
+
     const newId = `prod-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`;
     const now = Math.floor(Date.now() / 1000);
 
@@ -74,6 +83,9 @@ export const POST: APIRoute = async ({ request }) => {
       image_size: typeof image_size === 'number' ? image_size : 0,
       image_mime: typeof image_mime === 'string' ? image_mime.trim() : '',
       active: active === false ? false : true,
+      is_featured: shouldBeFeatured,
+      featured_label: typeof featured_label === 'string' && featured_label.trim() ? featured_label.trim() : 'Especialidad de la casa',
+      featured_description: typeof featured_description === 'string' && featured_description.trim() ? featured_description.trim() : 'Horneados frescos cada mañana',
       order_index: totalCount + 1,
       created_at: now,
       updated_at: now

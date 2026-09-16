@@ -4,7 +4,7 @@ import { PRODUCT_LIMITS, VALID_CATEGORIES } from '../../../../lib/constants';
 import { deleteImageFromR2 } from '../../../../lib/r2';
 import { ok, badRequest, notFound, serverError } from '../../../../lib/response';
 import type { UpdateProductRequestBody, PatchProductRequestBody } from '../../../../types/api';
-import { eq } from 'drizzle-orm';
+import { eq, ne } from 'drizzle-orm';
 
 export const prerender = false;
 
@@ -23,7 +23,7 @@ export const PUT: APIRoute = async ({ params, request }) => {
     }
 
     const body = (await request.json().catch(() => ({}))) as UpdateProductRequestBody;
-    let { name, description, price, show_price, category, image_url, image_key, image_size, image_mime, active, order_index } = body;
+    let { name, description, price, show_price, category, image_url, image_key, image_size, image_mime, active, is_featured, featured_label, featured_description, order_index } = body;
 
     // Validate name
     name = typeof name === 'string' ? name.trim() : existing.name;
@@ -55,6 +55,14 @@ export const PUT: APIRoute = async ({ params, request }) => {
       await deleteImageFromR2(existing.image_key);
     }
 
+    // If marking as featured, unset all others
+    if (is_featured === true) {
+      await db
+        .update(schema.products)
+        .set({ is_featured: false })
+        .where(ne(schema.products.id, id));
+    }
+
     const now = Math.floor(Date.now() / 1000);
 
     const updateData: Partial<typeof schema.products.$inferInsert> = {
@@ -68,6 +76,9 @@ export const PUT: APIRoute = async ({ params, request }) => {
       image_size: typeof image_size === 'number' ? image_size : existing.image_size,
       image_mime: typeof image_mime === 'string' ? image_mime.trim() : existing.image_mime,
       active: active !== undefined ? active : existing.active,
+      is_featured: is_featured !== undefined ? is_featured : existing.is_featured,
+      featured_label: typeof featured_label === 'string' && featured_label.trim() ? featured_label.trim() : existing.featured_label,
+      featured_description: typeof featured_description === 'string' && featured_description.trim() ? featured_description.trim() : existing.featured_description,
       order_index: typeof order_index === 'number' ? order_index : existing.order_index,
       updated_at: now
     };
@@ -104,6 +115,16 @@ export const PATCH: APIRoute = async ({ params, request }) => {
     }
     if (typeof body.show_price === 'boolean') {
       updateData.show_price = body.show_price;
+    }
+    if (typeof body.is_featured === 'boolean') {
+      if (body.is_featured === true) {
+        // Unset any other featured product
+        await db
+          .update(schema.products)
+          .set({ is_featured: false })
+          .where(ne(schema.products.id, id));
+      }
+      updateData.is_featured = body.is_featured;
     }
 
     await db.update(schema.products).set(updateData).where(eq(schema.products.id, id));
