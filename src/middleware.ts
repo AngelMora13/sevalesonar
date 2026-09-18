@@ -48,6 +48,21 @@ export const onRequest = defineMiddleware(async (context, next) => {
       return context.redirect('/admin/login');
     }
   }
+  const response = await next();
+  const isHtml = response.headers.get("content-type")?.includes("text/html");
+  if (isHtml) {
+    const cspHeader = `
+      default-src 'self';
+      frame-ancestors 'none';
+      connect-src 'self' https://static.cloudflareinsights.com;
+      script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com;
+      style-src 'self' 'unsafe-inline';
+      font-src 'self' data:;
+      img-src 'self' data: blob: https:;
+      media-src 'self';
+    `.replace(/\s+/g, ' ').trim();
 
-  return next();
+    response.headers.set("Content-Security-Policy", cspHeader);
+  }
+  return response;
 });

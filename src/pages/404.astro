@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import IconBase from '../components/IconBase.astro';
+import { SITE_INFO } from '../lib/constants';
+
+export const prerender = false;
+
+// 404 HTTP Status Code
+Astro.response.status = 404;
+
+// Directivas de cabecera HTTP anti-indexación para robots y motores de búsqueda
+Astro.response.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive, nosnippet, noimageindex');
+---
+
+<Layout
+  title={`Página no encontrada (404) | ${SITE_INFO.storeName}`}
+  description="Lo sentimos, no pudimos encontrar la página que buscas. Descubre nuestros deliciosos ponquesitos y postres artesanales."
+  noindex={true}
+>
+  <Navbar hideNavLinks={true} />
+
+  <main class="flex-1 flex items-center justify-center py-12 md:py-20 px-4 sm:px-6 relative overflow-hidden">
+    <!-- Ambient Background Glows -->
+    <div
+      class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-amber-300/30 via-rose-300/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="absolute bottom-10 right-10 w-72 h-72 bg-amber-200/20 rounded-full blur-2xl pointer-events-none -z-10"
+      aria-hidden="true"
+    ></div>
+
+    <div class="w-full max-w-2xl mx-auto text-center">
+      <!-- Card Container -->
+      <div class="glass-card rounded-3xl p-8 sm:p-12 shadow-xl shadow-amber-900/5 border border-amber-200/60 relative overflow-hidden backdrop-blur-md">
+        
+        <!-- Floating Animated Cupcake & Badge -->
+        <div class="relative mb-6 inline-flex flex-col items-center">
+          <div class="relative inline-flex items-center justify-center w-28 h-28 sm:w-32 sm:h-32 rounded-3xl bg-gradient-to-br from-amber-500 via-rose-400 to-amber-600 p-1 shadow-lg shadow-amber-500/25 animate-bounce [animation-duration:3s]">
+            <div class="w-full h-full bg-white rounded-[22px] flex items-center justify-center text-5xl sm:text-6xl">
+              <IconBase name="cupcake" fontSize="3.5rem" />
+            </div>
+          </div>
+          <span class="mt-4 inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-900 border border-amber-200/80 shadow-xs">
+            <IconBase name="warning" fontSize="0.95em" />
+            Error 404 • Receta extraviada
+          </span>
+        </div>
+
+        <!-- Big 404 Title -->
+        <h1 class="text-5xl sm:text-7xl font-extrabold font-display tracking-tight text-[#2b1e1a] mb-3">
+          ¡Ups! <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-rose-600">404</span>
+        </h1>
+
+        <!-- Subtitle & Description -->
+        <p class="text-lg sm:text-xl font-semibold text-[#4a3b32] mb-2 font-display">
+          Parece que este postre no está en la vitrina
+        </p>
+        <p class="text-sm sm:text-base text-[#7c5e4f] max-w-md mx-auto mb-8 leading-relaxed">
+          La página que buscas no existe o fue movida a otra bandeja del horno. ¡Pero no te quedes con el antojo! Tenemos muchos dulces frescos esperando por ti.
+        </p>
+
+        <!-- Primary Actions -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5">
+          <a
+            href="/"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-700 hover:to-amber-600 text-white font-semibold text-sm shadow-md shadow-amber-600/20 hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+          >
+            <IconBase name="sparkles" fontSize="1.1em" />
+            <span>Volver al Catálogo</span>
+          </a>
+
+          <a
+            href={`https://wa.me/${SITE_INFO.whatsappNumber}?text=${encodeURIComponent(SITE_INFO.whatsappDefaultMessage)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-white hover:bg-emerald-50 text-emerald-800 border border-emerald-200 hover:border-emerald-300 font-semibold text-sm shadow-xs hover:shadow-md transition-all duration-200"
+          >
+            <svg class="w-4 h-4 fill-emerald-600 shrink-0" viewBox="0 0 24 24">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.969.54 1.761.802 2.796.802 3.181 0 5.767-2.586 5.768-5.768 0-3.18-2.587-5.768-5.768-5.768zm3.393 8.354c-.143.403-.834.774-1.161.824-.307.047-.698.077-1.127-.061-.264-.085-.595-.213-1.018-.396-1.782-.771-2.94-2.569-3.03-2.688-.089-.119-.726-.967-.726-1.846 0-.879.461-1.312.625-1.49.164-.178.357-.223.476-.223.119 0 .238.001.341.006.109.005.253-.042.395.3.143.342.49 1.196.535 1.285.045.089.075.193.015.312-.06.119-.089.193-.178.297-.089.104-.188.232-.268.312-.089.089-.182.186-.078.364.104.178.463.764.994 1.237.684.61 1.261.799 1.44.888.178.089.282.074.386-.045.104-.119.446-.52.565-.698.119-.178.238-.149.395-.089.158.06 1.002.472 1.173.558.171.086.286.128.328.2.042.072.042.417-.101.82zM12 2C6.477 2 2 6.477 2 12c0 1.891.526 3.66 1.444 5.174L2 22l4.981-1.393C8.423 21.493 10.154 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
+            </svg>
+            <span>Consultar por WhatsApp</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer hideNavLinks={true} />
+</Layout>

@@ -25,7 +25,7 @@ export const SITE_INFO = {
   shortName: 'Se Vale Soñar',
   subheading: 'Repostería Fina',
   tagline: 'Repostería Artesanal & Momentos Dulces',
-  siteUrl: 'https://sevalesonar.com', // Dominio canónico para SEO
+  siteUrl: 'https://sevalesonar.angelmorab13.workers.dev', // Dominio canónico para SEO
 
   // Metadatos SEO y Redes Sociales
   title: 'Se Vale Soñar | Catálogo de Ponquesitos & Postres Artesanales',
@@ -55,8 +55,8 @@ export const SITE_INFO = {
   whatsappFormatted: '+58 412-0757802',
   whatsappDefaultMessage: '¡Hola Se Vale Soñar! 🧁 Me gustaría hacer una consulta o pedido.',
   whatsappCustomMessage: '¡Hola Se Vale Soñar! 🧁 Me gustaría hacer un pedido personalizado.',
-  instagram: '@cupcakesevalesoñar',
-  instagramUrl: 'https://instagram.com/cupcakesevalesoñar',
+  instagram: '@cupcakessevalesonar',
+  instagramUrl: 'https://instagram.com/cupcakessevalesonar',
 
   // Horarios y Logística
   scheduleWeekdays: 'Lunes a Sábado: 9:00 AM - 7:00 PM',

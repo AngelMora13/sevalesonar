@@ -2,6 +2,13 @@
   "name": "sevalesonar",
   "version": "1.0.0",
   "description": "Catálogo y panel admin para Se Vale Soñar",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp",
+      "workerd"
+    ]
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

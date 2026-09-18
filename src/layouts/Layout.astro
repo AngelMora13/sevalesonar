@@ -1,6 +1,6 @@
 ---
-import '../styles/global.css';
-import { SITE_INFO } from '../lib/constants';
+import "../styles/global.css";
+import { SITE_INFO } from "../lib/constants";
 
 interface Props {
   title?: string;
@@ -10,53 +10,52 @@ interface Props {
   noindex?: boolean;
 }
 
-const {
-  title,
-  description,
-  canonical,
-  image,
-  noindex = false
-} = Astro.props;
+const { title, description, canonical, image, noindex = false } = Astro.props;
 
 const metaTitle = title || SITE_INFO.title;
 const metaDescription = description || SITE_INFO.description;
-const baseUrl = SITE_INFO.siteUrl.replace(/\/+$/, '');
+const baseUrl = SITE_INFO.siteUrl.replace(/\/+$/, "");
 const canonicalUrl = canonical || new URL(Astro.url.pathname, baseUrl).href;
 const metaImageUrl = new URL(image || SITE_INFO.ogImage, baseUrl).href;
 
 // JSON-LD Structured Data para Negocio Local / Repostería
 const structuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'Bakery',
-  'name': SITE_INFO.storeName,
-  'description': SITE_INFO.description,
-  'url': baseUrl,
-  'image': metaImageUrl,
-  'telephone': SITE_INFO.whatsappFormatted,
-  'address': {
-    '@type': 'PostalAddress',
-    'addressLocality': 'Caracas',
-    'addressRegion': 'Distrito Capital',
-    'addressCountry': 'VE'
+  "@context": "https://schema.org",
+  "@type": "Bakery",
+  name: SITE_INFO.storeName,
+  description: SITE_INFO.description,
+  url: baseUrl,
+  image: metaImageUrl,
+  telephone: SITE_INFO.whatsappFormatted,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Caracas",
+    addressRegion: "Distrito Capital",
+    addressCountry: "VE",
   },
-  'priceRange': '$$',
-  'openingHoursSpecification': [
+  priceRange: "$$",
+  openingHoursSpecification: [
     {
-      '@type': 'OpeningHoursSpecification',
-      'dayOfWeek': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      'opens': '09:00',
-      'closes': '19:00'
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ],
+      opens: "09:00",
+      closes: "19:00",
     },
     {
-      '@type': 'OpeningHoursSpecification',
-      'dayOfWeek': ['Sunday'],
-      'opens': '10:00',
-      'closes': '16:00'
-    }
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Sunday"],
+      opens: "10:00",
+      closes: "16:00",
+    },
   ],
-  'sameAs': [
-    SITE_INFO.instagramUrl
-  ]
+  sameAs: [SITE_INFO.instagramUrl],
 };
 ---
 
@@ -67,14 +66,19 @@ const structuredData = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
 
     <!-- SEO Principal -->
     <title>{metaTitle}</title>
     <meta name="description" content={metaDescription} />
-    <meta name="keywords" content={SITE_INFO.keywords.join(', ')} />
+    <meta name="keywords" content={SITE_INFO.keywords.join(", ")} />
     <meta name="author" content={SITE_INFO.author} />
-    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <meta
+      name="robots"
+      content={noindex ? "noindex, nofollow, noarchive, nosnippet, noimageindex" : "index, follow"}
+    />
+    {noindex && (
+      <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+    )}
     <link rel="canonical" href={canonicalUrl} />
     <meta name="theme-color" content="#d97736" />
 
@@ -95,7 +99,10 @@ const structuredData = {
     <meta name="twitter:image" content={metaImageUrl} />
 
     <!-- Datos Estructurados JSON-LD -->
-    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -105,7 +112,9 @@ const structuredData = {
       rel="stylesheet"
     />
   </head>
-  <body class="min-h-screen bg-[#fffbf7] text-[#2b1e1a] antialiased selection:bg-amber-200 selection:text-amber-900 flex flex-col justify-between">
+  <body
+    class="min-h-screen bg-[#fffbf7] text-[#2b1e1a] antialiased selection:bg-amber-200 selection:text-amber-900 flex flex-col justify-between"
+  >
     <slot />
   </body>
 </html>
