@@ -1,6 +1,9 @@
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
+/logo-sevalesonar.webp
+  Cache-Control: public, max-age=31536000, immutable
+
 /placeholder-pastry.svg
   Cache-Control: public, max-age=31536000, immutable
 

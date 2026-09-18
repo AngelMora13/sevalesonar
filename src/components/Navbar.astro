@@ -1,6 +1,6 @@
 ---
-import { SITE_INFO } from '../lib/constants';
-import IconBase from './IconBase.astro';
+import { SITE_INFO } from "../lib/constants";
+import IconBase from "./IconBase.astro";
 
 interface Props {
   hideNavLinks?: boolean;
@@ -14,16 +14,30 @@ const { hideNavLinks = false } = Astro.props;
     <div class="flex items-center justify-between h-20">
       <!-- Brand Logo -->
       <a href="/" class="flex items-center gap-3 group">
-        <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500 to-rose-500 p-0.5 shadow-md shadow-amber-500/20 group-hover:scale-105 transition-transform">
-          <div class="w-full h-full bg-white rounded-[14px] flex items-center justify-center text-2xl">
-            <IconBase name="cupcake" fontSize="1.5rem" />
+        <div
+          class="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-primary-hover p-0.5 shadow-md shadow-primary/20 group-hover:scale-105 transition-transform"
+        >
+          <div
+            class="w-full h-full bg-white rounded-[14px] flex items-center justify-center text-2xl overflow-hidden"
+          >
+            <IconBase name="logo" fontSize="2rem" rounded />
           </div>
         </div>
         <div>
-          <span class="text-2xl font-bold font-display tracking-tight text-main group-hover:text-primary transition-colors">
+          <span
+            class="text-2xl
+              font-bold
+              font-display
+              tracking-tight
+              text-main
+              group-hover:text-primary
+              transition-colors"
+          >
             {SITE_INFO.storeName}
           </span>
-          <span class="block text-xs font-medium tracking-wider uppercase text-light">
+          <span
+            class="block text-xs font-medium tracking-wider uppercase text-light"
+          >
             {SITE_INFO.subheading}
           </span>
         </div>
@@ -68,7 +82,9 @@ const { hideNavLinks = false } = Astro.props;
           class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-xs hover:shadow-md transition-all duration-200"
         >
           <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.969.54 1.761.802 2.796.802 3.181 0 5.767-2.586 5.768-5.768 0-3.18-2.587-5.768-5.768-5.768zm3.393 8.354c-.143.403-.834.774-1.161.824-.307.047-.698.077-1.127-.061-.264-.085-.595-.213-1.018-.396-1.782-.771-2.94-2.569-3.03-2.688-.089-.119-.726-.967-.726-1.846 0-.879.461-1.312.625-1.49.164-.178.357-.223.476-.223.119 0 .238.001.341.006.109.005.253-.042.395.3.143.342.49 1.196.535 1.285.045.089.075.193.015.312-.06.119-.089.193-.178.297-.089.104-.188.232-.268.312-.089.089-.182.186-.078.364.104.178.463.764.994 1.237.684.61 1.261.799 1.44.888.178.089.282.074.386-.045.104-.119.446-.52.565-.698.119-.178.238-.149.395-.089.158.06 1.002.472 1.173.558.171.086.286.128.328.2.042.072.042.417-.101.82zM12 2C6.477 2 2 6.477 2 12c0 1.891.526 3.66 1.444 5.174L2 22l4.981-1.393C8.423 21.493 10.154 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
+            <path
+              d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.969.54 1.761.802 2.796.802 3.181 0 5.767-2.586 5.768-5.768 0-3.18-2.587-5.768-5.768-5.768zm3.393 8.354c-.143.403-.834.774-1.161.824-.307.047-.698.077-1.127-.061-.264-.085-.595-.213-1.018-.396-1.782-.771-2.94-2.569-3.03-2.688-.089-.119-.726-.967-.726-1.846 0-.879.461-1.312.625-1.49.164-.178.357-.223.476-.223.119 0 .238.001.341.006.109.005.253-.042.395.3.143.342.49 1.196.535 1.285.045.089.075.193.015.312-.06.119-.089.193-.178.297-.089.104-.188.232-.268.312-.089.089-.182.186-.078.364.104.178.463.764.994 1.237.684.61 1.261.799 1.44.888.178.089.282.074.386-.045.104-.119.446-.52.565-.698.119-.178.238-.149.395-.089.158.06 1.002.472 1.173.558.171.086.286.128.328.2.042.072.042.417-.101.82zM12 2C6.477 2 2 6.477 2 12c0 1.891.526 3.66 1.444 5.174L2 22l4.981-1.393C8.423 21.493 10.154 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"
+            ></path>
           </svg>
           <span>Escribir al WhatsApp</span>
         </a>

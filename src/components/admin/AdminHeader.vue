@@ -1,15 +1,17 @@
 <template>
   <header class="glass-card rounded-3xl p-6 sm:p-8 border border-[#e8d2c0] shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-6">
     <div class="flex items-center gap-4">
-      <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-rose-500 flex items-center justify-center text-3xl shadow-md shadow-amber-500/20">
-        <IconBase name="cupcake" fontSize="1.8rem" />
+      <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary-hover p-0.5 shadow-md shadow-primary/20 flex items-center justify-center">
+        <div class="w-full h-full bg-white rounded-[14px] flex items-center justify-center text-3xl overflow-hidden">
+          <IconBase name="logo" fontSize="2rem" />
+        </div>
       </div>
       <div>
         <div class="flex items-center gap-3">
-          <h1 class="text-2xl sm:text-3xl font-bold font-display text-[#2b1e1a]">
+          <h1 class="text-2xl sm:text-3xl font-bold font-display text-main">
             Panel de Administración
           </h1>
-          <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-200">
+          <span class="px-3 py-1 rounded-full text-xs font-bold bg-primary-light text-primary-dark border border-primary-border">
             Se Vale Soñar
           </span>
         </div>

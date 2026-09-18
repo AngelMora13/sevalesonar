@@ -8,38 +8,51 @@
        ========================================================================== */
 
     /* --- Color Principal / Marca (Botones, detalles destacados, CTAs) --- */
-    --color-primary: #d97736;
-    --color-primary-hover: #c46527;
-    --color-primary-dark: #b8561d;
-    --color-primary-light: #fcefe3;
-    --color-primary-soft: #faefe5;
-    --color-primary-border: #ecd2bf;
+    --color-primary: #9337B3;
+    --color-primary-hover: #7d2a9b;
+    --color-primary-dark: #6b1d87;
+    --color-primary-light: #fae0ff;
+    --color-primary-soft: #f6d5fd;
+    --color-primary-border: #ebbef8;
 
     /* --- Fondos de la Interfaz --- */
-    --color-canvas: #fffbf7;           /* Fondo principal de la página */
-    --color-surface: #ffffff;          /* Fondo de tarjetas, modales y cajas */
-    --color-surface-subtle: #faf4ee;   /* Fondo secundario suave */
-    --color-surface-warm: #f5ebe1;     /* Fondo de pestañas y contenedores */
-    --color-surface-muted: #fdf6ee;    /* Fondo para scrollbar o áreas tenues */
+    --color-canvas: #feecff;
+    /* Fondo principal de la página */
+    --color-surface: #ffffff;
+    /* Fondo de tarjetas, modales y cajas */
+    --color-surface-subtle: #fdf5ff;
+    /* Fondo secundario suave */
+    --color-surface-warm: #f7defb;
+    /* Fondo de pestañas y contenedores */
+    --color-surface-muted: #fae8fd;
+    /* Fondo para scrollbar o áreas tenues */
 
     /* --- Textos y Tipografía --- */
-    --color-text-main: #2b1e1a;        /* Títulos y texto principal (chocolate oscuro) */
-    --color-text-muted: #614b3f;       /* Párrafos y descripciones */
-    --color-text-subtle: #7d6455;      /* Textos secundarios y metadatos */
-    --color-text-light: #a37c67;       /* Subtítulos pequeños y leyendas */
+    --color-text-main: #2b1433;
+    /* Títulos y texto principal (ciruela/berenjena oscuro) */
+    --color-text-muted: #5e4069;
+    /* Párrafos y descripciones */
+    --color-text-subtle: #7f5d8c;
+    /* Textos secundarios y metadatos */
+    --color-text-light: #a382b0;
+    /* Subtítulos pequeños y leyendas */
 
     /* --- Bordes y Separadores --- */
-    --color-border-main: #ebd8ca;      /* Bordes estándar */
-    --color-border-subtle: #f0ded2;    /* Bordes sutiles o divisores internos */
-    --color-border-warm: #e5cbba;      /* Bordes de inputs y botones secundarios */
-    --color-border-tab: #e8d7c8;       /* Bordes de pestañas */
+    --color-border-main: #ebd1f3;
+    /* Bordes estándar */
+    --color-border-subtle: #f3def8;
+    /* Bordes sutiles o divisores internos */
+    --color-border-warm: #e2bceb;
+    /* Bordes de inputs y botones secundarios */
+    --color-border-tab: #dfb6ea;
+    /* Bordes de pestañas */
 
     /* --- Footer y Elementos Oscuros --- */
-    --color-footer-bg: #241713;
-    --color-footer-text: #f5ebe1;
-    --color-footer-muted: #b89e90;
-    --color-footer-subtle: #8f7568;
-    --color-footer-border: #3b2822;
+    --color-footer-bg: #1f0b26;
+    --color-footer-text: #faeaff;
+    --color-footer-muted: #bca6c7;
+    --color-footer-subtle: #8a7096;
+    --color-footer-border: #351640;
 
     /* --- Tipografías --- */
     --font-serif: system-ui, Georgia, serif;

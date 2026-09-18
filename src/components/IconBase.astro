@@ -13,6 +13,7 @@ export interface Props {
   height?: string | number;
   class?: string;
   color?: string;
+  rounded?: boolean;
 }
 
 const {
@@ -22,6 +23,7 @@ const {
   height,
   class: className = "",
   color = "currentColor",
+  rounded = false,
 } = Astro.props;
 
 const formatDim = (val?: string | number) => {
@@ -54,7 +56,7 @@ const fallbackChar = emojiFallback[name] || "✨";
       <img
         src={imageSrc}
         alt={name}
-        class="w-full h-full object-contain pointer-events-none select-none"
+        class={`w-full h-full object-contain pointer-events-none select-none ${rounded ? "rounded-full" : ""}`}
         loading="lazy"
         style="transform: scale(1.1);"
       />

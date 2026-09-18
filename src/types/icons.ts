@@ -8,7 +8,8 @@ export type EmojiName =
   | 'delivery'  // 🛵
   | 'pin'       // 📍
   | 'lock'      // 🔐
-  | 'star';     // ⭐
+  | 'star'     // ⭐
+  | 'logo';     // 📸
 
 /**
  * ARCHIVOS PNG VECTORIZADOS/RENDERIZADOS EN /public/assets/emojis/
@@ -23,7 +24,8 @@ export const emojiImageMap: Record<EmojiName, string> = {
   delivery: '/assets/emojis/delivery.png',
   pin: '/assets/emojis/pin.png',
   lock: '/assets/emojis/lock.png',
-  star: '/assets/emojis/star.png'
+  star: '/assets/emojis/star.png',
+  logo: '/logo-sevalesonar.webp'
 };
 
 /**
@@ -40,7 +42,8 @@ export const emojiSvgMap: Record<EmojiName, string> = {
   delivery: '',  // 🛵 Entregas y envíos
   pin: '',       // 📍 Ubicación / Contacto
   lock: '',      // 🔐 Panel administrativo / Seguridad
-  star: ''       // ⭐ Calificaciones / Reseñas
+  star: '',      // ⭐ Calificaciones / Reseñas
+  logo: ''       // 📸 Logo
 };
 
 /**
@@ -56,5 +59,6 @@ export const emojiFallback: Record<EmojiName, string> = {
   delivery: '🛵',
   pin: '📍',
   lock: '🔐',
-  star: '⭐'
+  star: '⭐',
+  logo: '📸'
 };

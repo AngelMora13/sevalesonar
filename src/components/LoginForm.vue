@@ -2,9 +2,9 @@
   <div class="w-full max-w-md mx-auto">
     <div class="glass-card rounded-3xl p-8 border border-border-warm shadow-xl">
       <div class="text-center mb-8">
-        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500 to-rose-500 p-0.5 mx-auto mb-4 shadow-lg shadow-amber-500/20">
-          <div class="w-full h-full bg-white rounded-[14px] flex items-center justify-center text-3xl">
-            <IconBase name="cupcake" fontSize="2rem" />
+        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary-hover p-0.5 mx-auto mb-4 shadow-lg shadow-primary/20">
+          <div class="w-full h-full bg-white rounded-[14px] flex items-center justify-center text-3xl overflow-hidden">
+            <IconBase name="logo" fontSize="2.5rem" />
           </div>
         </div>
         <h1 class="text-2xl font-bold font-display text-main">

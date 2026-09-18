@@ -16,8 +16,10 @@ const currentYear = new Date().getFullYear();
       <!-- Col 1: Brand -->
       <div class={`${hideNavLinks ? 'md:col-span-2' : 'md:col-span-2'} space-y-4`}>
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-rose-500 flex items-center justify-center text-xl">
-            <IconBase name="cupcake" fontSize="1.35rem" />
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-hover p-0.5 flex items-center justify-center">
+            <div class="w-full h-full bg-white rounded-[10px] flex items-center justify-center overflow-hidden">
+              <IconBase name="logo" fontSize="1.5rem" rounded />
+            </div>
           </div>
           <span class="text-2xl font-bold font-display tracking-tight text-white">
             {SITE_INFO.storeName}
