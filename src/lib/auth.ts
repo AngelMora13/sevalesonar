@@ -26,9 +26,12 @@ export async function computeHash(input: string, saltSuffix: string, secretKey: 
 
 export async function getRuntimeCredentials(explicitEnv?: any) {
   const env = explicitEnv || cfEnv;
-  const username = env.ADMIN_USERNAME || 'admin';
-  const password = env.ADMIN_PASSWORD || 'Password123!';
-  const secret = env.AUTH_SECRET || 'sevale-sonar-default-auth-secret-32bytes-key!';
+  const username = env.ADMIN_USERNAME;
+  const password = env.ADMIN_PASSWORD;
+  const secret = env.AUTH_SECRET;
+  if (!username || !password || !secret) {
+    throw new Error('El administrador no esta disponible. Por favor, intenta mas tarde.');
+  }
   return { username, password, secret };
 }
 
