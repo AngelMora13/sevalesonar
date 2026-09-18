@@ -74,11 +74,18 @@ const structuredData = {
     <meta name="author" content={SITE_INFO.author} />
     <meta
       name="robots"
-      content={noindex ? "noindex, nofollow, noarchive, nosnippet, noimageindex" : "index, follow"}
+      content={noindex
+        ? "noindex, nofollow, noarchive, nosnippet, noimageindex"
+        : "index, follow"}
     />
-    {noindex && (
-      <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
-    )}
+    {
+      noindex && (
+        <meta
+          name="googlebot"
+          content="noindex, nofollow, noarchive, nosnippet, noimageindex"
+        />
+      )
+    }
     <link rel="canonical" href={canonicalUrl} />
     <meta name="theme-color" content="#d97736" />
 
@@ -103,17 +110,9 @@ const structuredData = {
       type="application/ld+json"
       set:html={JSON.stringify(structuredData)}
     />
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body
-    class="min-h-screen bg-[#fffbf7] text-[#2b1e1a] antialiased selection:bg-amber-200 selection:text-amber-900 flex flex-col justify-between"
+    class="min-h-screen bg-canvas text-main antialiased selection:bg-primary-light selection:text-primary-dark flex flex-col justify-between"
   >
     <slot />
   </body>

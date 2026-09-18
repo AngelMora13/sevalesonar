@@ -17,22 +17,22 @@ const featuredDescription = featuredProduct?.featured_description || 'Horneados 
 
 <section class="relative overflow-hidden pt-8 pb-16 md:pt-16 md:pb-24">
   <!-- Subtle decorative warm background blurs -->
-  <div class="absolute top-10 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-r from-amber-200/40 via-rose-100/30 to-amber-100/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
+  <div class="absolute top-10 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-r from-primary-light/50 via-rose-100/30 to-primary-soft/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
       <!-- Text & Action Column -->
       <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#fcefe3] border border-[#ecd2bf] text-xs font-bold text-[#b8561d] uppercase tracking-wider">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-light border border-primary-border text-xs font-bold text-primary-dark uppercase tracking-wider">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
           {SITE_INFO.heroBadge}
         </div>
 
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display tracking-tight text-[#2b1e1a] leading-[1.15]">
-          {SITE_INFO.heroTitlePrefix} <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#d97736] via-[#c45318] to-rose-600">{SITE_INFO.heroTitleHighlight}</span>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display tracking-tight text-main leading-[1.15]">
+          {SITE_INFO.heroTitlePrefix} <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-hover to-rose-600">{SITE_INFO.heroTitleHighlight}</span>
         </h1>
 
-        <p class="text-lg text-[#614b3f] max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+        <p class="text-lg text-muted max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
           {SITE_INFO.heroDescription}
         </p>
 
@@ -40,7 +40,7 @@ const featuredDescription = featuredProduct?.featured_description || 'Horneados 
         <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
           <a
             href="#catalogo"
-            class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-[#d97736] hover:bg-[#c46527] text-white font-semibold text-sm shadow-lg shadow-[#d97736]/25 transition-all duration-200 active:scale-[0.98] text-center inline-flex items-center justify-center gap-2"
+            class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-primary hover:bg-primary-hover text-white font-semibold text-sm shadow-lg shadow-primary/25 transition-all duration-200 active:scale-[0.98] text-center inline-flex items-center justify-center gap-2"
           >
             <IconBase name="cupcake" fontSize="1.25em" />
             <span>Ver Catálogo Completo</span>
@@ -50,7 +50,7 @@ const featuredDescription = featuredProduct?.featured_description || 'Horneados 
             href={`https://wa.me/${SITE_INFO.whatsappNumber}?text=${encodeURIComponent(SITE_INFO.whatsappCustomMessage)}`}
             target="_blank"
             rel="noopener noreferrer"
-            class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-white hover:bg-[#faf4ee] border border-[#e5cbba] text-[#2b1e1a] font-semibold text-sm shadow-xs transition-all duration-200 active:scale-[0.98] text-center flex items-center justify-center gap-2"
+            class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-surface hover:bg-surface-subtle border border-border-warm text-main font-semibold text-sm shadow-xs transition-all duration-200 active:scale-[0.98] text-center flex items-center justify-center gap-2"
           >
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
             Contactar por WhatsApp
@@ -58,21 +58,21 @@ const featuredDescription = featuredProduct?.featured_description || 'Horneados 
         </div>
 
         <!-- Trust Badges -->
-        <div class="pt-6 border-t border-[#ebd8ca] grid grid-cols-3 gap-4 text-center lg:text-left">
+        <div class="pt-6 border-t border-border-main grid grid-cols-3 gap-4 text-center lg:text-left">
           <div>
-            <div class="text-xl sm:text-2xl font-bold font-display text-[#2b1e1a]">11</div>
-            <div class="text-xs text-[#7d6455] font-medium">Recetas exclusivas</div>
+            <div class="text-xl sm:text-2xl font-bold font-display text-main">11</div>
+            <div class="text-xs text-subtle font-medium">Recetas exclusivas</div>
           </div>
           <div>
-            <div class="text-xl sm:text-2xl font-bold font-display text-[#2b1e1a]">100%</div>
-            <div class="text-xs text-[#7d6455] font-medium">Artesanal & Fresco</div>
+            <div class="text-xl sm:text-2xl font-bold font-display text-main">100%</div>
+            <div class="text-xs text-subtle font-medium">Artesanal & Fresco</div>
           </div>
           <div>
-            <div class="text-xl sm:text-2xl font-bold font-display text-[#2b1e1a] inline-flex items-center gap-1 justify-center lg:justify-start">
+            <div class="text-xl sm:text-2xl font-bold font-display text-main inline-flex items-center gap-1 justify-center lg:justify-start">
               <span>5</span>
               <IconBase name="star" fontSize="1.15rem" />
             </div>
-            <div class="text-xs text-[#7d6455] font-medium">Sabor inigualable</div>
+            <div class="text-xs text-subtle font-medium">Sabor inigualable</div>
           </div>
         </div>
       </div>
@@ -81,7 +81,7 @@ const featuredDescription = featuredProduct?.featured_description || 'Horneados 
       <div class="lg:col-span-5 relative">
         <div class="relative mx-auto max-w-md lg:max-w-none">
           <!-- Main Hero Image Card -->
-          <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/5] bg-gradient-to-tr from-amber-100 to-rose-100">
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/5] bg-gradient-to-tr from-primary-light to-rose-100">
             <img
               src={featuredImage}
               alt={featuredName}
@@ -89,7 +89,7 @@ const featuredDescription = featuredProduct?.featured_description || 'Horneados 
             />
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
             <div class="absolute bottom-6 left-6 right-6 text-white">
-              <span class="px-3 py-1 bg-amber-500/90 backdrop-blur-md rounded-full text-xs font-bold uppercase tracking-wider">
+              <span class="px-3 py-1 bg-primary/90 backdrop-blur-md rounded-full text-xs font-bold uppercase tracking-wider">
                 {featuredLabel}
               </span>
               <h3 class="text-2xl font-bold font-display mt-2">{featuredName}</h3>
@@ -99,12 +99,12 @@ const featuredDescription = featuredProduct?.featured_description || 'Horneados 
 
           <!-- Floating badge -->
           <div class="absolute -bottom-6 -left-6 glass-card p-4 rounded-2xl shadow-xl border border-white/60 hidden sm:flex items-center gap-3">
-            <div class="w-12 h-12 rounded-xl bg-amber-500 text-white flex items-center justify-center text-2xl shadow-md">
+            <div class="w-12 h-12 rounded-xl bg-primary text-white flex items-center justify-center text-2xl shadow-md">
               <IconBase name="sparkles" fontSize="1.5rem" />
             </div>
             <div>
-              <p class="text-xs font-bold text-[#2b1e1a]">Pedidos Inmediatos</p>
-              <p class="text-[11px] text-[#785f51]">Entrega rápida y segura</p>
+              <p class="text-xs font-bold text-main">Pedidos Inmediatos</p>
+              <p class="text-[11px] text-subtle">Entrega rápida y segura</p>
             </div>
           </div>
         </div>

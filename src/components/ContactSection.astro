@@ -3,45 +3,45 @@ import { SITE_INFO } from '../lib/constants';
 import IconBase from './IconBase.astro';
 ---
 
-<section id="contacto" class="py-16 md:py-24 bg-gradient-to-b from-[#fffbf7] via-[#fbf1e8] to-[#f7e4d5] border-t border-[#f0ded2]">
+<section id="contacto" class="py-16 md:py-24 bg-gradient-to-b from-canvas via-surface-subtle to-primary-light/40 border-t border-border-subtle">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center max-w-3xl mx-auto mb-16">
-      <span class="text-xs font-bold uppercase tracking-widest text-[#b8561d] bg-[#faefe5] px-4 py-1.5 rounded-full border border-[#eed4c2]">
+      <span class="text-xs font-bold uppercase tracking-widest text-primary-dark bg-primary-soft px-4 py-1.5 rounded-full border border-primary-border">
         Estamos a tu orden
       </span>
-      <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-[#2b1e1a] mt-4 mb-4">
+      <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-main mt-4 mb-4">
         Haz tu pedido o consulta disponibilidad
       </h2>
-      <p class="text-[#695244] text-base leading-relaxed">
+      <p class="text-muted text-base leading-relaxed">
         Cada uno de nuestros ponquesitos y postres es elaborado de manera artesanal con ingredientes de primera calidad para garantizar una experiencia inolvidable.
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <!-- Card 1: Horarios -->
-      <div class="glass-card rounded-3xl p-8 border border-[#f0ded2] shadow-sm flex flex-col justify-between">
+      <div class="glass-card rounded-3xl p-8 border border-border-subtle shadow-sm flex flex-col justify-between">
         <div>
-          <div class="w-14 h-14 rounded-2xl bg-amber-100 flex items-center justify-center text-3xl mb-6 text-[#b8561d]">
+          <div class="w-14 h-14 rounded-2xl bg-primary-light flex items-center justify-center text-3xl mb-6 text-primary-dark">
             <IconBase name="clock" fontSize="1.85rem" />
           </div>
-          <h3 class="text-xl font-bold font-display text-[#2b1e1a] mb-3">
+          <h3 class="text-xl font-bold font-display text-main mb-3">
             Horarios de Atención
           </h3>
-          <p class="text-sm text-[#695244] mb-4">
+          <p class="text-sm text-muted mb-4">
             Recibimos y coordinamos tus encargos en los siguientes horarios:
           </p>
-          <div class="space-y-2 text-sm text-[#4a3b32]">
-            <div class="flex justify-between py-1.5 border-b border-[#f0ded2]">
+          <div class="space-y-2 text-sm text-muted">
+            <div class="flex justify-between py-1.5 border-b border-border-subtle">
               <span class="font-medium">Semana:</span>
-              <span class="font-bold text-[#b8561d] text-right">{SITE_INFO.scheduleWeekdays}</span>
+              <span class="font-bold text-primary-dark text-right">{SITE_INFO.scheduleWeekdays}</span>
             </div>
             <div class="flex justify-between py-1.5">
               <span class="font-medium">Fin de Semana:</span>
-              <span class="font-bold text-[#b8561d] text-right">{SITE_INFO.scheduleWeekend}</span>
+              <span class="font-bold text-primary-dark text-right">{SITE_INFO.scheduleWeekend}</span>
             </div>
           </div>
         </div>
-        <div class="mt-6 pt-4 border-t border-[#f0ded2] text-xs text-[#826a5d] inline-flex items-center gap-1.5">
+        <div class="mt-6 pt-4 border-t border-border-subtle text-xs text-subtle inline-flex items-center gap-1.5">
           <IconBase name="sparkles" fontSize="1.1em" />
           <span>{SITE_INFO.specialNotice}</span>
         </div>
@@ -54,10 +54,10 @@ import IconBase from './IconBase.astro';
           <div class="w-14 h-14 rounded-2xl bg-emerald-100 flex items-center justify-center text-3xl mb-6 text-emerald-700">
             <IconBase name="chat" fontSize="1.85rem" />
           </div>
-          <h3 class="text-xl font-bold font-display text-[#2b1e1a] mb-3">
+          <h3 class="text-xl font-bold font-display text-main mb-3">
             WhatsApp Oficial
           </h3>
-          <p class="text-sm text-[#695244] mb-4">
+          <p class="text-sm text-muted mb-4">
             Canal directo y prioritario para pedidos, cotizaciones y atención personalizada:
           </p>
           <div class="p-3 bg-white/80 rounded-xl border border-emerald-200/70 mb-4 text-center">
@@ -80,25 +80,25 @@ import IconBase from './IconBase.astro';
       </div>
 
       <!-- Card 3: Entregas y Redes Sociales -->
-      <div class="glass-card rounded-3xl p-8 border border-[#f0ded2] shadow-sm flex flex-col justify-between">
+      <div class="glass-card rounded-3xl p-8 border border-border-subtle shadow-sm flex flex-col justify-between">
         <div>
           <div class="w-14 h-14 rounded-2xl bg-rose-100 flex items-center justify-center text-3xl mb-6 text-rose-700">
             <IconBase name="delivery" fontSize="1.85rem" />
           </div>
-          <h3 class="text-xl font-bold font-display text-[#2b1e1a] mb-3">
+          <h3 class="text-xl font-bold font-display text-main mb-3">
             Entregas & Redes
           </h3>
-          <div class="space-y-3 text-sm text-[#695244]">
+          <div class="space-y-3 text-sm text-muted">
             <p>
-              <strong class="text-[#2b1e1a]">Ubicación:</strong> {SITE_INFO.location}
+              <strong class="text-main">Ubicación:</strong> {SITE_INFO.location}
             </p>
             <p>
-              <strong class="text-[#2b1e1a]">Modalidad:</strong> {SITE_INFO.pickupNote}
+              <strong class="text-main">Modalidad:</strong> {SITE_INFO.pickupNote}
             </p>
           </div>
         </div>
 
-        <div class="mt-6 pt-4 border-t border-[#f0ded2]">
+        <div class="mt-6 pt-4 border-t border-border-subtle">
           <a
             href={SITE_INFO.instagramUrl}
             target="_blank"

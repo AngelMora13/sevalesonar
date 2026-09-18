@@ -20,10 +20,10 @@ const { hideNavLinks = false } = Astro.props;
           </div>
         </div>
         <div>
-          <span class="text-2xl font-bold font-display tracking-tight text-[#2b1e1a] group-hover:text-[#d97736] transition-colors">
+          <span class="text-2xl font-bold font-display tracking-tight text-main group-hover:text-primary transition-colors">
             {SITE_INFO.storeName}
           </span>
-          <span class="block text-xs font-medium tracking-wider uppercase text-[#a37c67]">
+          <span class="block text-xs font-medium tracking-wider uppercase text-light">
             {SITE_INFO.subheading}
           </span>
         </div>
@@ -35,21 +35,21 @@ const { hideNavLinks = false } = Astro.props;
           <nav class="hidden md:flex items-center gap-8">
             <a
               href="#catalogo"
-              class="inline-flex items-center gap-1.5 text-sm font-medium text-[#4a3b32] hover:text-[#d97736] transition-colors"
+              class="inline-flex items-center gap-1.5 text-sm font-medium text-muted hover:text-primary transition-colors"
             >
               <IconBase name="cupcake" fontSize="1.15em" />
               <span>Ponquesitos</span>
             </a>
             <a
               href="#catalogo"
-              class="inline-flex items-center gap-1.5 text-sm font-medium text-[#4a3b32] hover:text-[#d97736] transition-colors"
+              class="inline-flex items-center gap-1.5 text-sm font-medium text-muted hover:text-primary transition-colors"
             >
               <IconBase name="cake" fontSize="1.15em" />
               <span>Otros Postres</span>
             </a>
             <a
               href="#contacto"
-              class="inline-flex items-center gap-1.5 text-sm font-medium text-[#4a3b32] hover:text-[#d97736] transition-colors"
+              class="inline-flex items-center gap-1.5 text-sm font-medium text-muted hover:text-primary transition-colors"
             >
               <IconBase name="pin" fontSize="1.15em" />
               <span>Contacto & Horarios</span>

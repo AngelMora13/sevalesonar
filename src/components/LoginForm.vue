@@ -1,16 +1,16 @@
 <template>
   <div class="w-full max-w-md mx-auto">
-    <div class="glass-card rounded-3xl p-8 border border-[#e8d2c0] shadow-xl">
+    <div class="glass-card rounded-3xl p-8 border border-border-warm shadow-xl">
       <div class="text-center mb-8">
         <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500 to-rose-500 p-0.5 mx-auto mb-4 shadow-lg shadow-amber-500/20">
           <div class="w-full h-full bg-white rounded-[14px] flex items-center justify-center text-3xl">
             <IconBase name="cupcake" fontSize="2rem" />
           </div>
         </div>
-        <h1 class="text-2xl font-bold font-display text-[#2b1e1a]">
+        <h1 class="text-2xl font-bold font-display text-main">
           Panel de Administración
         </h1>
-        <p class="text-sm text-[#735a4d] mt-1">
+        <p class="text-sm text-subtle mt-1">
           Ingresa tus credenciales seguras para gestionar el catálogo
         </p>
       </div>
@@ -28,7 +28,7 @@
 
       <form @submit.prevent="handleLogin" class="space-y-5">
         <div>
-          <label class="block text-xs font-bold uppercase tracking-wider text-[#523e32] mb-1.5">
+          <label class="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5">
             Usuario
           </label>
           <input
@@ -37,12 +37,12 @@
             required
             autocomplete="username"
             placeholder="admin"
-            class="w-full px-4 py-3 bg-white border border-[#debfa8] rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#d97736] focus:border-transparent transition-all"
+            class="w-full px-4 py-3 bg-white border border-border-warm rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
           />
         </div>
 
         <div>
-          <label class="block text-xs font-bold uppercase tracking-wider text-[#523e32] mb-1.5">
+          <label class="block text-xs font-bold uppercase tracking-wider text-muted mb-1.5">
             Contraseña
           </label>
           <input
@@ -51,14 +51,14 @@
             required
             autocomplete="current-password"
             placeholder="••••••••"
-            class="w-full px-4 py-3 bg-white border border-[#debfa8] rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#d97736] focus:border-transparent transition-all"
+            class="w-full px-4 py-3 bg-white border border-border-warm rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
           />
         </div>
 
         <button
           type="submit"
           :disabled="loading"
-          class="w-full py-3.5 px-4 rounded-2xl bg-[#d97736] hover:bg-[#c46527] text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer mt-2"
+          class="w-full py-3.5 px-4 rounded-2xl bg-primary hover:bg-primary-hover text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer mt-2"
         >
           <svg
             v-if="loading"
@@ -73,8 +73,8 @@
         </button>
       </form>
 
-      <div class="mt-8 pt-6 border-t border-[#f0ded2] text-center">
-        <a href="/" class="text-xs font-medium text-[#7d6455] hover:text-[#2b1e1a] transition-colors">
+      <div class="mt-8 pt-6 border-t border-border-subtle text-center">
+        <a href="/" class="text-xs font-medium text-subtle hover:text-main transition-colors">
           ← Volver al sitio público
         </a>
       </div>
