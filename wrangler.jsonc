@@ -10,7 +10,6 @@
     {
       "binding": "DB",
       "database_name": "sevalesonar-db",
-      "database_id": "sevalesonar-d1-prod",
       "migrations_dir": "./drizzle/migrations"
     }
   ],
